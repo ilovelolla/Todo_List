@@ -6,30 +6,23 @@
     <title>TodoList</title>
 </head>
 <body>
-    <div class="container">
+    <main class="container">
         <div id="side">
-            <div id="sidewrapper"> 
-
             <p id="sideTitle">To Do List </p>
-
-            <div class="folders">
-                <p id="default">Default</p>
-            </div>
-             <form id="myForm">
-                    <button type="button" class="addFolder">Add Folder</button>
-                    <input type="text" id="folderTitle" name="Foldertitle" placeholder="Title">
-            
-                   <input type="submit" value="Submit" id="submit">
-                  <button type="button" id="cancelBtn">Cancel</button>
-            </form>
-            
-
-            </div>
+             <div class="sidenav">
+                <div class="wrapper">
+                     <button id ="tab1">Default Tab</button>
+                </div>
+                 <form id="myForm">
+                    <button type="button" id="addFolder">Add Folder</button>
+                    <input type="text" id="folderTitle" name="Foldertitle" placeholder="Title"> </form>
         </div>
-        <div id="main">Default
-            <br><br><br><br>
-            <button>new</button>
         </div>
-    </div>
+
+        <section id="main">
+            <div class="hidden"></div>
+        </section>
+       
+    </main>
 </body>
 </html>

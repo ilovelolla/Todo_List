@@ -1,6 +1,8 @@
 import "./styles.css";
-import { Todofolders } from "./newFolder.js";
+import {addTest, Todofolders} from "./newFolder.js";
 
+addTest();
 
+console.log(Todofolders)
 
 
