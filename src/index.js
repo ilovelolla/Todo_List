@@ -1,7 +1,7 @@
 import "./styles.css";
-import {addTest, Todofolders} from "./newFolder.js";
+import {displayFolders, Todofolders} from "./newFolder.js";
 
-addTest();
+displayFolders();
 
 console.log(Todofolders)
 
