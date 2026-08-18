@@ -1,8 +1,7 @@
 import "./styles.css";
-import {displayFolders, Todofolders} from "./newFolder.js";
+import {displayFolders, Todofolders, showTab} from "./newFolder.js";
 
 displayFolders();
 
-console.log(Todofolders)
 
 

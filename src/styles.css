@@ -42,3 +42,10 @@ a {
     color: inherit;
 }
 
+.tab-pane { 
+  display: none;
+}
+
+.tab-pane.active { 
+  display: block; 
+}

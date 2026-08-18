@@ -46,5 +46,18 @@ function createFolder(folderName) {
 }
 
 
+
+export function showTab(event) {
+    let activeTabs = document.querySelectorAll('.active');
+
+    activeTabs.forEach(function(tab) {
+    tab.className = tab.className.replace('active', '');
+  });
+
+  event.target.parentElement.className += ' active';
+  document.getElementById(event.target.href.split('#')[1]).className += ' active';
+}
+
+wrapper.addEventListener("click", showTab, false)
 // export {Todofolders}
 
