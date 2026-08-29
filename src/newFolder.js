@@ -2,31 +2,58 @@ const addfolder = document.getElementById("addFolder");
 const sidenav = document.querySelector(".sidenav");
 const wrapper = document.querySelector(".wrapper");
 const tabContent = document.querySelector(".tab-content");
-addfolder.addEventListener("click", displayFolders);
-
-
 var names = document.querySelector("#folderTitle");
 
-export var Todofolders = [];
 
-export function displayFolders(e){ 
-     e.preventDefault(e);
-     const folderName = names.value;
-    if(Todofolders.includes(folderName)) {
-        alert("already added")
-    } else {
-    Todofolders.push(folderName);
-     createFolder(folderName)
+
+const createDefaultTab = () => {
+   var list = document.createElement("li");
+   list.className = "active"
+   list.id = "tab1"
+    //add anchor
+    var a = document.createElement("a");
+    a.href = "#default";
+    a.innerHTML = "Default Tab";
+
+    //delete button
+    var deleteBtn = document.createElement("button");
+    deleteBtn.innerHTML = `Delete`
+    deleteBtn.className = "delete"
+    deleteBtn.onclick = () => {
+      list.remove()
     }
+
+    // tab content
+    var defaultTab = document.createElement("div")
+    defaultTab.id = "default"
+    defaultTab.className = "tab-pane active"
+
+    var defaultText = document.createElement("div");
+    defaultText.textContent = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem iure quos cum, saepe reprehenderit minima quasi architecto numquam nesciunt dicta.
+    Qui excepturi recusandae vitae maiores, inventore sequi? Rerum, odio omnis.`;
+    
+    list.appendChild(a);
+    list.appendChild(deleteBtn);
+    wrapper.appendChild(list);
+    defaultTab.appendChild(defaultText);
+    tabContent.appendChild(defaultTab);
 }
 
-function createFolder(folderName) {
-    //add list
+
+const createFolder = (e) => {
+    e.preventDefault();
+    const folderName = names.value;
+      //add list
     var list = document.createElement("li");
     //add anchor
     var a = document.createElement("a");
     a.href = "#" + folderName;
-    a.textContent = folderName;
+    a.innerHTML = folderName;
+
+    //delete button
+    var deleteBtn = document.createElement("button");
+    deleteBtn.innerHTML = `Delete`
+    deleteBtn.className = "delete"
 
     // tab content
     var tab = document.createElement("div")
@@ -34,20 +61,21 @@ function createFolder(folderName) {
     tab.className = "tab-pane"
 
     var text = document.createElement("div")
-    text.textContent = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum."
-
+    text.innerHTML =  '<h2>+</h2><br><br><div>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. </div>';
 
     //append
     list.appendChild(a);
+     list.appendChild(deleteBtn);
     wrapper.appendChild(list);
     tab.appendChild(text);
     tabContent.appendChild(tab);
-
-}
-
+};
 
 
-export function showTab(event) {
+
+//switch tab
+
+const switchTab = (event) => {
     let activeTabs = document.querySelectorAll('.active');
 
     activeTabs.forEach(function(tab) {
@@ -56,8 +84,19 @@ export function showTab(event) {
 
   event.target.parentElement.className += ' active';
   document.getElementById(event.target.href.split('#')[1]).className += ' active';
-}
+};
+ 
+// delete folders
 
-wrapper.addEventListener("click", showTab, false)
-// export {Todofolders}
+document.addEventListener('click', function (e) {
+  if (e.target.matches('.delete'))
+    e.target.parentNode.remove()
+}, false);
+
+
+wrapper.addEventListener("click", switchTab, false);
+addfolder.addEventListener("click", createFolder);
+createDefaultTab();
+
+export {switchTab, createFolder}
 

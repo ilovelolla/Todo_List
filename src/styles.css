@@ -22,6 +22,7 @@ margin: 20px;
 
 .tab-content {
     background-color: #454040;
+    padding: 20px;
 }
 
 .sidenav, .wrapper {
@@ -44,6 +45,7 @@ a {
 
 .tab-pane { 
   display: none;
+   
 }
 
 .tab-pane.active { 
