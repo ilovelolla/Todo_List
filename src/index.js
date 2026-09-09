@@ -1,7 +1,7 @@
 import "./styles.css";
-import {createFolder, showTab} from "./newFolder.js";
+import {createFolder} from "./newFolder.js";
+
 
 createFolder()
-
 
 

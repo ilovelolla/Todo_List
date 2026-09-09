@@ -43,11 +43,19 @@ a {
     color: inherit;
 }
 
-.tab-pane { 
+.b-tabs {
   display: none;
-   
 }
 
-.tab-pane.active { 
-  display: block; 
+.b-tabs.active {
+  display: block;
+}
+
+.nav-tab {
+  display: inline-block;
+  color: yellow;
+}
+
+.nav-tab.active {
+  color: #ff4200;
 }
