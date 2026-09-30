@@ -2,7 +2,7 @@
 'use strict';
 
 
-export function Tabs() {
+export const Tabs = () => {
   var bindAll = function() {
     var menuElements = document.querySelectorAll('[data-tab]');
     for(var i = 0; i < menuElements.length ; i++) {
@@ -30,5 +30,3 @@ export function Tabs() {
 }
 
 Tabs();
- 
-console.log("hello")
