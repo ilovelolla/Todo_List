@@ -1,6 +1,4 @@
 import { Tabs} from "./switchTab";
-import { createForm } from "./modal";
-
 
 const addfolder = document.getElementById("addFolder");
 const sidenav = document.querySelector(".sidenav");
@@ -22,7 +20,8 @@ function createDefaultTab() {
     var deleteBtn = document.createElement("button");
     deleteBtn.innerHTML = `Delete`
     deleteBtn.className = "delete"
-     deleteBtn.onclick = function() {
+    
+    deleteBtn.onclick = function() {
     list.remove();
     defaultTab.remove()
   }
@@ -34,22 +33,19 @@ function createDefaultTab() {
     defaultTab.appendChild(createForm());
     
     var defaultText = document.createElement("div");
+    defaultText.classList = "modalBtn"
     defaultText.innerHTML = "+";
-    // defaultText.addEventListener("click", ()=> {
-    //   createForm
-    // })
-    
     
     
     list.appendChild(a);
     list.appendChild(deleteBtn);
     wrapper.appendChild(list);
-    // defaultTab.appendChild(defaultText);
+    defaultTab.appendChild(defaultText);
     tabContent.appendChild(defaultTab);
-    Tabs()    
-}
-
-
+    Tabs();  
+    
+};
+createDefaultTab()
 function createFolder (e) {
    e.preventDefault();
     const folderName = names.value;
@@ -78,20 +74,142 @@ function createFolder (e) {
     tab.className = "b-tabs"
     tab.appendChild(createForm())
     // tab.textContent = createForm()
+
+    var createText = document.createElement("div");
+    createText.classList = "modalBtn"
+    createText.innerHTML = "+";
     
     //append
     list.appendChild(a);
     list.appendChild(deleteBtn);
-    wrapper.appendChild(list);
+    tab.appendChild(createText)
     tabContent.appendChild(tab);
+    wrapper.appendChild(list);
     Tabs()
      
 };
 
-createDefaultTab()
+function createForm() {
+    //container 
+    const container =  document.createElement('div')
+    container.className = "container"
+    //header
+    const header = document.createElement("div")
+    header.classList = "headerModal"
+    const headerText = document.createElement("h2")
+    headerText.textContent = "Todo List"
+    
+    const closeBtn = document.createElement("span")
+    closeBtn.textContent = "-"
+    closeBtn.classList = "closeBtn_modal";
 
-// wrapper.addEventListener("click", switchTab, false);
+    
+    //form
+    const myForm = document.createElement('form');
+    myForm.id = "myForm"
+    myForm.classList = "modalForm"
+    //title
+    const labelTitle = document.createElement('label');
+    labelTitle.textContent = 'Title';
+    labelTitle.htmlFor = 'Title'
+    const title = document.createElement('input');
+    title.type = 'text';
+    title.name = 'title';
+    title.placeholder = 'Name of your Todo';
+
+    //description
+    const labelDescription = document.createElement('label');
+    labelDescription.textContent = 'Description';
+    labelDescription.htmlFor = 'description'
+
+    const description = document.createElement('input');
+    description.type = 'text';
+    description.name = 'description';
+    description.placeholder = 'Description of your Todo';
+
+    //dueDate
+    const labelDate = document.createElement('label');
+    labelDate.textContent = 'Date';
+    labelDate.htmlFor = 'date'
+
+    const date = document.createElement('input')
+    date.type = "date"
+    date.id = "setDate"
+    date.required = "required"
+
+    //priority
+    const labelPrio = document.createElement('label');
+    labelPrio.textContent = 'Priority';
+    labelPrio.htmlFor = 'priority';
+
+    const newList = document.createElement("select");
+    newList.appendChild(new Option("High", "High"));
+    newList.appendChild(new Option("Medium", "Medium"));
+    newList.appendChild(new Option("Low", "Low"));
+    
+    // submit
+    const submitBtn = document.createElement("input")
+    submitBtn.type = "submit"
+    submitBtn.value = "submit"
+    submitBtn.id = "submitbtn"
+
+     header.appendChild(headerText);
+     header.appendChild(closeBtn);
+     container.appendChild(header);
+     myForm.appendChild(labelTitle);
+     myForm.appendChild(title);
+     myForm.appendChild(labelDescription);
+     myForm.appendChild(description);
+     myForm.appendChild(labelDate);
+     myForm.appendChild(date);
+     myForm.appendChild(labelPrio);
+     myForm.appendChild(newList)
+     myForm.appendChild(submitBtn)
+     container.appendChild(myForm)
+     
+     return container
+}
+
+function controlModal(e) {
+ const target = e.target.closest(".modalBtn"); // Or any other selector.
+  const closeModal = e.target.closest(".closeBtn_modal")
+  var modal = document.querySelectorAll(".container");
+
+[].forEach.call(modal, function(container) {
+ 
+  if(target){
+    container.style.display = "block";
+    console.log("sksk")
+  }
+  if(closeModal) {
+    container.style.display = "none";
+}
+});
+
+}
+
+
+
+// tabContent.addEventListener("click", (e)=> {
+//    const target = e.target.closest(".modalBtn"); // Or any other selector.
+//   const closeModal = e.target.closest(".closeBtn_modal")
+//   var modal = document.querySelectorAll(".container");
+
+// [].forEach.call(modal, function(container) {
+ 
+//   if(target){
+//     container.style.display = "block";
+//     console.log("sksk")
+//   }
+//   if(closeModal) {
+//     container.style.display = "none";
+// }
+// });
+
+
+// })
+
+tabContent.addEventListener("click", controlModal)
 addfolder.addEventListener("click", createFolder);
-
 
 export { createFolder, createDefaultTab, tabContent}

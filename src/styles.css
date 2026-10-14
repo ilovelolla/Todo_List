@@ -1,4 +1,4 @@
-/* styles.css */
+styles.css
 *{
   box-sizing: border-box;
   padding: 0;
@@ -16,9 +16,9 @@
     background-color: #605B51;
 }
 
-#sidewrapper {
-margin: 20px;
-}
+/* #sidewrapper {
+margin: 100px;
+} */
 
 .tab-content {
     background-color: #454040;
@@ -63,6 +63,7 @@ a {
 /* MODAL */
 
 .container {
+  display: none;
  text-align: left;
   width: 350px;
   height: 380px;
