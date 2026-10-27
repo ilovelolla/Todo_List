@@ -1,4 +1,4 @@
-styles.css
+
 *{
   box-sizing: border-box;
   padding: 0;
@@ -16,9 +16,7 @@ styles.css
     background-color: #605B51;
 }
 
-/* #sidewrapper {
-margin: 100px;
-} */
+
 
 .tab-content {
     background-color: #454040;
@@ -60,6 +58,7 @@ a {
   color: #ff4200;
 }
 
+
 /* MODAL */
 
 .container {
@@ -71,7 +70,9 @@ a {
   background-color: #f2f2f2;
   padding: 20px;
   margin: 0 auto;
-
+  position:fixed;
+    top:90px;
+    right:370px;
 }
 
 label {display: block;}

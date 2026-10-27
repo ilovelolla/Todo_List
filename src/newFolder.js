@@ -1,10 +1,13 @@
 import { Tabs} from "./switchTab";
+import { addTodo, TodoValues } from "./createTodo";
 
 const addfolder = document.getElementById("addFolder");
 const sidenav = document.querySelector(".sidenav");
 const wrapper = document.querySelector(".wrapper");
 const tabContent = document.querySelector(".tab-content");
 var names = document.querySelector("#folderTitle");
+
+
 
 function createDefaultTab() {
      var list = document.createElement("li");
@@ -89,6 +92,7 @@ function createFolder (e) {
      
 };
 
+
 function createForm() {
     //container 
     const container =  document.createElement('div')
@@ -103,11 +107,11 @@ function createForm() {
     closeBtn.textContent = "-"
     closeBtn.classList = "closeBtn_modal";
 
-    
     //form
     const myForm = document.createElement('form');
     myForm.id = "myForm"
     myForm.classList = "modalForm"
+    // myForm.onclick = modalX()
     //title
     const labelTitle = document.createElement('label');
     labelTitle.textContent = 'Title';
@@ -115,6 +119,7 @@ function createForm() {
     const title = document.createElement('input');
     title.type = 'text';
     title.name = 'title';
+    title.id = 'title'
     title.placeholder = 'Name of your Todo';
 
     //description
@@ -125,6 +130,7 @@ function createForm() {
     const description = document.createElement('input');
     description.type = 'text';
     description.name = 'description';
+    description.id = "description"
     description.placeholder = 'Description of your Todo';
 
     //dueDate
@@ -134,7 +140,7 @@ function createForm() {
 
     const date = document.createElement('input')
     date.type = "date"
-    date.id = "setDate"
+    date.id = "dueDate"
     date.required = "required"
 
     //priority
@@ -146,12 +152,14 @@ function createForm() {
     newList.appendChild(new Option("High", "High"));
     newList.appendChild(new Option("Medium", "Medium"));
     newList.appendChild(new Option("Low", "Low"));
+    newList.id = "priority"
     
     // submit
     const submitBtn = document.createElement("input")
     submitBtn.type = "submit"
     submitBtn.value = "submit"
     submitBtn.id = "submitbtn"
+    // submitBtn.onclick = modalX()
 
      header.appendChild(headerText);
      header.appendChild(closeBtn);
@@ -163,53 +171,40 @@ function createForm() {
      myForm.appendChild(labelDate);
      myForm.appendChild(date);
      myForm.appendChild(labelPrio);
-     myForm.appendChild(newList)
-     myForm.appendChild(submitBtn)
-     container.appendChild(myForm)
+     myForm.appendChild(newList);
+     myForm.appendChild(submitBtn);
+     container.appendChild(myForm);
      
-     return container
+     return container;
 }
 
 function controlModal(e) {
- const target = e.target.closest(".modalBtn"); // Or any other selector.
-  const closeModal = e.target.closest(".closeBtn_modal")
+  const target = e.target.closest(".modalBtn"); // Or any other selector.
+  const closeModal = e.target.closest(".closeBtn_modal");
+  var form = e.target.closest("#myForm");
+  var submitform = e.target.closest("#submitbtn")
   var modal = document.querySelectorAll(".container");
 
 [].forEach.call(modal, function(container) {
  
   if(target){
     container.style.display = "block";
-    console.log("sksk")
+   
   }
   if(closeModal) {
     container.style.display = "none";
-}
-});
-
-}
-
-
-
-// tabContent.addEventListener("click", (e)=> {
-//    const target = e.target.closest(".modalBtn"); // Or any other selector.
-//   const closeModal = e.target.closest(".closeBtn_modal")
-//   var modal = document.querySelectorAll(".container");
-
-// [].forEach.call(modal, function(container) {
- 
-//   if(target){
-//     container.style.display = "block";
-//     console.log("sksk")
-//   }
-//   if(closeModal) {
-//     container.style.display = "none";
-// }
-// });
+} 
+  if(form && submitform) {
+    e.preventDefault();
+    // TodoValues();
+    console.log("hey it works")
+  }
+});};
 
 
-// })
+
 
 tabContent.addEventListener("click", controlModal)
 addfolder.addEventListener("click", createFolder);
 
-export { createFolder, createDefaultTab, tabContent}
+export { createFolder, createDefaultTab}
