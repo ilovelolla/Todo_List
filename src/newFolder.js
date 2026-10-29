@@ -1,5 +1,5 @@
 import { Tabs} from "./switchTab";
-import { addTodo, TodoValues } from "./createTodo";
+import { addTodo, getValues } from "./createTodo";
 
 const addfolder = document.getElementById("addFolder");
 const sidenav = document.querySelector(".sidenav");
@@ -159,7 +159,6 @@ function createForm() {
     submitBtn.type = "submit"
     submitBtn.value = "submit"
     submitBtn.id = "submitbtn"
-    // submitBtn.onclick = modalX()
 
      header.appendChild(headerText);
      header.appendChild(closeBtn);
@@ -196,8 +195,10 @@ function controlModal(e) {
 } 
   if(form && submitform) {
     e.preventDefault();
-    // TodoValues();
-    console.log("hey it works")
+  //    const formData = new FormData(form);
+  // const formProps = Object.fromEntries(formData);
+  // console.log(Object.fromEntries(formData))
+  getValues(form)
   }
 });};
 

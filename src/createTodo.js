@@ -13,14 +13,14 @@ class createTodo {
 }
 
 
-function TodoValues() {
-    // var title = document.getElementById("").value;
-    // var description = document.getElementById("").value;
-    // var dueDate = document.getElementById("").value;
-    // var priority = document.getElementById("").value;
+function getValues(form) {
+    var formData = new FormData(form);
 
-    // addTodo(title, description, dueDate, priority);
-    console.log("ldldlld")
+  for (var pair of formData.entries()) {
+    console.log(pair[0] + ": " + pair[1]);
+  }
+
+  console.log(Object.fromEntries(formData));
 }
 
 function addTodo(title, description, dueDate, priority) {
@@ -30,4 +30,4 @@ function addTodo(title, description, dueDate, priority) {
 }
 console.log(myTodo)
 
-export {addTodo, TodoValues}
+export {addTodo, getValues}
