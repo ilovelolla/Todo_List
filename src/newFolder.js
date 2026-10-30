@@ -109,7 +109,7 @@ function createForm() {
 
     //form
     const myForm = document.createElement('form');
-    myForm.id = "myForm"
+    myForm.id = "myForms"
     myForm.classList = "modalForm"
     // myForm.onclick = modalX()
     //title
@@ -175,16 +175,18 @@ function createForm() {
      container.appendChild(myForm);
      
      return container;
+     submitForm(date, myForm,submitBtn, container);
 }
 
 function controlModal(e) {
   const target = e.target.closest(".modalBtn"); // Or any other selector.
   const closeModal = e.target.closest(".closeBtn_modal");
-  var form = e.target.closest("#myForm");
+  var form = e.target.closest("#myForms");
   var submitform = e.target.closest("#submitbtn")
   var modal = document.querySelectorAll(".container");
+   var dates = e.target.closest("#dueDate");
 
-[].forEach.call(modal, function(container) {
+  [].forEach.call(modal, function(container) {
  
   if(target){
     container.style.display = "block";
@@ -194,14 +196,28 @@ function controlModal(e) {
     container.style.display = "none";
 } 
   if(form && submitform) {
-    e.preventDefault();
-  //    const formData = new FormData(form);
-  // const formProps = Object.fromEntries(formData);
-  // console.log(Object.fromEntries(formData))
+  e.preventDefault();
   getValues(form)
   }
 });};
 
+function submitForm(date, myForm,submitBtn, container){
+
+     var myForm = document.getElementById("myForms");
+     var date = document.getElementById("dueDate");
+     var submits = document.getElementById("submitbtn");
+     var modal = document.getElementsByClassName("container");
+
+  [].forEach.call(modal, function(container) {
+myForm.addEventListener("submit", (e) => {
+  e.preventDefault()
+  getValues(myForm)
+  console.log("heloo")
+ })
+  })
+
+ 
+}
 
 
 
