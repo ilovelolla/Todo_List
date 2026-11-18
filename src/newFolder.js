@@ -1,5 +1,5 @@
 import { Tabs} from "./switchTab";
-import { addTodo, getValues } from "./createTodo";
+import { addTodo, getValues, myTodo } from "./createTodo";
 
 const addfolder = document.getElementById("addFolder");
 const sidenav = document.querySelector(".sidenav");
@@ -49,6 +49,7 @@ function createDefaultTab() {
     
 };
 createDefaultTab()
+
 function createFolder (e) {
    e.preventDefault();
     const folderName = names.value;
@@ -74,7 +75,7 @@ function createFolder (e) {
     // tab content
     var tab = document.createElement("div")
     tab.id = folderName
-    tab.className = "b-tabs"
+    tab.className = "b-tabs";
     tab.appendChild(createForm())
     // tab.textContent = createForm()
 
@@ -111,6 +112,7 @@ function createForm() {
     const myForm = document.createElement('form');
     myForm.id = "myForms"
     myForm.classList = "modalForm"
+    myForm.method = "POST"
     // myForm.onclick = modalX()
     //title
     const labelTitle = document.createElement('label');
@@ -136,11 +138,12 @@ function createForm() {
     //dueDate
     const labelDate = document.createElement('label');
     labelDate.textContent = 'Date';
-    labelDate.htmlFor = 'date'
+    labelDate.htmlFor = 'date';
 
     const date = document.createElement('input')
     date.type = "date"
     date.id = "dueDate"
+    date.name = "Date"
     date.required = "required"
 
     //priority
@@ -153,6 +156,7 @@ function createForm() {
     newList.appendChild(new Option("Medium", "Medium"));
     newList.appendChild(new Option("Low", "Low"));
     newList.id = "priority"
+    newList.name = "priority"
     
     // submit
     const submitBtn = document.createElement("input")
@@ -175,16 +179,18 @@ function createForm() {
      container.appendChild(myForm);
      
      return container;
-     submitForm(date, myForm,submitBtn, container);
+    //  values(form)
 }
 
+
 function controlModal(e) {
-  const target = e.target.closest(".modalBtn"); // Or any other selector.
+
+  const target = e.target.closest(".modalBtn"); 
   const closeModal = e.target.closest(".closeBtn_modal");
   var form = e.target.closest("#myForms");
   var submitform = e.target.closest("#submitbtn")
   var modal = document.querySelectorAll(".container");
-   var dates = e.target.closest("#dueDate");
+
 
   [].forEach.call(modal, function(container) {
  
@@ -194,33 +200,13 @@ function controlModal(e) {
   }
   if(closeModal) {
     container.style.display = "none";
-} 
-  if(form && submitform) {
+} })
+  if(submitform && form) {
+  
   e.preventDefault();
   getValues(form)
   }
-});};
-
-function submitForm(date, myForm,submitBtn, container){
-
-     var myForm = document.getElementById("myForms");
-     var date = document.getElementById("dueDate");
-     var submits = document.getElementById("submitbtn");
-     var modal = document.getElementsByClassName("container");
-
-  [].forEach.call(modal, function(container) {
-myForm.addEventListener("submit", (e) => {
-  e.preventDefault()
-  getValues(myForm)
-  console.log("heloo")
- })
-  })
-
- 
 }
-
-
-
 tabContent.addEventListener("click", controlModal)
 addfolder.addEventListener("click", createFolder);
 

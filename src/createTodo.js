@@ -1,6 +1,8 @@
 
  
-const myTodo = [];
+var myTodo = [];
+
+console.log(myTodo)
 
 class createTodo {
     constructor(title, description, dueDate, priority ) {
@@ -14,20 +16,30 @@ class createTodo {
 
 
 function getValues(form) {
+  
     var formData = new FormData(form);
-
-  for (var pair of formData.entries()) {
-    console.log(pair[0] + ": " + pair[1]);
-  }
-
-  console.log(Object.fromEntries(formData));
+    var datas = Array.from(formData.entries()).reduce((memo, [key, value]) => ({
+    ...memo,
+    [key]: value,
+  }), {});
+  myTodo.push(datas)
+   const uniqueArray = myTodo.filter((o, index, arr) =>
+    arr.findIndex(item => JSON.stringify(item) === JSON.stringify(o)) === index
+);
+console.log(datas)
 }
+
+
+
+
+
+
 
 function addTodo(title, description, dueDate, priority) {
     const TodoList = new createTodo (title, description, dueDate, priority)
     myTodo.push(TodoList);
     console.log("hello")
 }
-console.log(myTodo)
 
-export {addTodo, getValues}
+
+export {addTodo, getValues, myTodo}
