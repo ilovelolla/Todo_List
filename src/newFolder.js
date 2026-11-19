@@ -1,5 +1,5 @@
 import { Tabs} from "./switchTab";
-import { addTodo, getValues, myTodo } from "./createTodo";
+import { getValues, myTodo } from "./createTodo";
 
 const addfolder = document.getElementById("addFolder");
 const sidenav = document.querySelector(".sidenav");
@@ -48,7 +48,7 @@ function createDefaultTab() {
     Tabs();  
     
 };
-createDefaultTab()
+
 
 function createFolder (e) {
    e.preventDefault();
@@ -179,7 +179,7 @@ function createForm() {
      container.appendChild(myForm);
      
      return container;
-    //  values(form)
+   
 }
 
 
@@ -200,11 +200,14 @@ function controlModal(e) {
   }
   if(closeModal) {
     container.style.display = "none";
-} })
-  if(submitform && form) {
-  
+} if(submitform) {
+    container.style.display = "none";
+} 
+})
+  if(submitform) {
   e.preventDefault();
   getValues(form)
+  form.reset();
   }
 }
 tabContent.addEventListener("click", controlModal)

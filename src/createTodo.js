@@ -14,7 +14,6 @@ class createTodo {
     }
 }
 
-
 function getValues(form) {
   
     var formData = new FormData(form);
@@ -23,10 +22,11 @@ function getValues(form) {
     [key]: value,
   }), {});
   myTodo.push(datas)
-   const uniqueArray = myTodo.filter((o, index, arr) =>
-    arr.findIndex(item => JSON.stringify(item) === JSON.stringify(o)) === index
-);
-console.log(datas)
+   console.log(myTodo)
+   var json = JSON.stringify(myTodo);
+   console.log(json)
+
+;
 }
 
 
@@ -35,11 +35,6 @@ console.log(datas)
 
 
 
-function addTodo(title, description, dueDate, priority) {
-    const TodoList = new createTodo (title, description, dueDate, priority)
-    myTodo.push(TodoList);
-    console.log("hello")
-}
 
 
-export {addTodo, getValues, myTodo}
+export {getValues, myTodo}
